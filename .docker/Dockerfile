@@ -1,0 +1,8 @@
+FROM php:7.4.15-apache
+
+COPY . /var/www/html
+
+RUN chown -R www-data:www-data /var/www/html && a2enmod rewrite
+
+EXPOSE 80
+

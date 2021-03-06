@@ -1,0 +1,10 @@
+version: "3"
+services:
+  web:
+    build:
+      dockerfile: .docker/Dockerfile
+      context: .
+
+    image: attendency
+    ports:
+      - 7070:80
