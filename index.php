@@ -3,32 +3,32 @@
  <?php
     if (isset($_POST['submit'])) {
         require './connection.php';
+        
+        $status = ($_POST['status'] == "present") ? 1 : 0;
+        $new_attendance = array(
+            "student" => $_POST['student'],
+            "date" => $_POST['date'],
+            "status" => $status
+        );
 
-        $student = $_POST['student'];
-        // $new_attendance = array(
-        //     "student" => $_POST['student'],
-        //     // "present" => $_POST['present'],
-        //     //"date" => $_POST['date']
-        // );
-
-        $sql = "INSERT INTO attendance (student) VALUES (?)";
+        $sql = "INSERT INTO attendance (student, attendance_date, status) VALUES (:student, :date, :status)";
         $req = db_connect()->prepare($sql);
 
-        $req->execute(array($student));
+        $req->execute($new_attendance);
         echo "Student added successfully!";
     }
 
     ?>
  <form method="post">
      <input type="date" name="date"><br>
-     <input type="text" placeholder="student name" name="student">
+     <input type="text" placeholder="Nom de l'etudiant name" name="student">
      <div>
-         <input type="radio" id="present" name="present" value="present" checked>
-         <label for="huey">Present</label>
+         <input type="radio" id="present" name="status" value="present" checked>
+         <label for="present">Present</label>
      </div>
 
      <div>
-         <input type="radio" id="absent" name="absent" value="absent">
+         <input type="radio" id="absent" name="status" value="absent">
          <label for="absent">Absent</label>
      </div>
 
