@@ -7,4 +7,22 @@ services:
 
     image: attendency
     ports:
-      - 7070:80
+      - 7075:80
+    volumes:
+      - .:/var/www/html
+    links:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: attendancy
+      DB_USERNAME: salimas
+      DB_PASSWORD: salimas
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_DATABASE: attendancy
+      MYSQL_USER: salimas
+      MYSQL_PASSWORD: salimas
+      MYSQL_ROOT_PASSWORD: root
