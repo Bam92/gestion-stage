@@ -3,7 +3,7 @@
  <?php
     if (isset($_POST['submit'])) {
         require './connection.php';
-        
+
         $status = ($_POST['status'] == "present") ? 1 : 0;
         $new_attendance = array(
             "student" => $_POST['student'],
@@ -21,7 +21,7 @@
     ?>
  <form method="post">
      <input type="date" name="date"><br>
-     <input type="text" placeholder="Nom de l'etudiant name" name="student">
+     <input type="text" placeholder="Nom de l'etudiant" name="student">
      <div>
          <input type="radio" id="present" name="status" value="present" checked>
          <label for="present">Present</label>
