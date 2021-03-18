@@ -19,6 +19,7 @@
     }
 
     ?>
+ <p><a href="./new_student.php">Ajouter nouveau stagiaire</a></p>
  <form method="post">
      <input type="date" name="date"><br>
      <input type="text" placeholder="Nom de l'etudiant" name="student">
