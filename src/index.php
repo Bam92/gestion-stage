@@ -1,11 +1,9 @@
- <h1>Presence stagiaires</h1>
+ <h1>Présence stagiaires</h1>
 
  <?php
-    require './connection.php';
-    $db = db_connect();
+    require './model.php';
 
     if (isset($_POST['submit'])) {
-
         if (!empty($_POST['studentId'])) {
             foreach ($_POST['studentId'] as $student_one) {
                 $status = ($_POST['status-' . $student_one] == "present") ? 1 : 0;
@@ -16,32 +14,22 @@
                     "status" => $status
                 );
 
-                $sql = "INSERT INTO attendance (studentId, attendance_date, status) VALUES (:studentId, :date, :status)";
-                $req = $db->prepare($sql);
-
-                $req->execute($new_attendance);
+                add_attendancy($new_attendance);
             }
             echo "Student added successfully!";
         }
-    }
-
-    function list_students()
-    {
-        global $db;
-        $sql = "SELECT * FROM student";
-        return $db->query($sql)->fetchAll();
     }
     ?>
  <p><a href="./new_student.php">Ajouter nouveau stagiaire</a></p>
  <form method="post">
      <div>
-         <input type="date" name="attendance_date">
+         <input type="date" name="attendance_date" required> (obligatoire)
      </div>
      <div>
          <table cellpadding="10" cellspacing="1">
              <thead>
                  <tr>
-                     <th>Etudiant</th>
+                     <th>Étudiant</th>
                      <th>Présent</th>
                      <th>Absent</th>
                  </tr>
@@ -50,11 +38,12 @@
                  <?php
                     $list = list_students();
 
-                    foreach ($list as $student) { ?>
+                    foreach ($list as $student) {
+                    ?>
                  <tr>
                      <td>
                          <input type="hidden" name="studentId[]" value=<?= $student['id']; ?>>
-                         <?= $student['first_name'], " ", $student['name'], " ", $student['last_name'];   ?>
+                         <?= $student['first_name'], " ", $student['name'], " ", $student['last_name']; ?>
                      </td>
                      <td>
                          <input type="radio" id="present" name="status-<?= $student['id']; ?>" value="present" checked>

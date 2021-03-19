@@ -1,8 +1,9 @@
  <h1>Nouveau stagiaire</h1>
+ <p><a href="/">Accueil</a></p>
 
  <?php
+    require './model.php';
     if (isset($_POST['submit'])) {
-        require './connection.php';
 
         $new_student = array(
             "first_name" => $_POST['fName'],
@@ -13,17 +14,9 @@
             "class" => $_POST['gender']
         );
 
-        $sql = sprintf(
-            "INSERT INTO %s (%s) VALUES (%s)",
-            "student",
-            implode(", ", array_keys($new_student)),
-            ":" . implode(", :", array_keys($new_student))
-        );
-
-        $req = db_connect()->prepare($sql);
-
-        $req->execute($new_student);
-        echo "Student added successfully!";
+        if (add_student($new_student)) {
+            echo "Student added successfully!";
+        }
     }
 
     ?>
