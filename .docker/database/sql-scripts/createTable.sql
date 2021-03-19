@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS attendance (
-student varchar(25),
+studentId INT,
 attendance_date  date,
-status int(5)
+status INT(5)
 );
 
 CREATE TABLE IF NOT EXISTS student (
