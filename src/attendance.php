@@ -33,12 +33,9 @@
          <?php
                 $absenceCount = 0;
                 foreach ($list as $student) {
+                    if ($student['status'] == 0) $absenceCount += 1;
                     $status = ($student['status']) == 1 ? "+" : "-";
                     $student = get_student_by_id($student['studentId']);
-
-                    if ($status == 0) {
-                        $absenceCount += 1;
-                    }
 
                 ?>
          <tr>
@@ -57,7 +54,7 @@
      </tbody>
  </table>
 
- <!-- <p>Nombre d'absence: -->
- <!-- <?= $absenceCount ?> -->
- <!-- </p> -->
+ <p>Nombre d'absence:
+     <?= $absenceCount ?>
+ </p>
  <?php } ?>
