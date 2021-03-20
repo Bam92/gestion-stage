@@ -11,6 +11,16 @@ function add_attendancy(array $data)
     $req->execute($data);
 }
 
+function get_attendancy_by_date($attendance_data)
+{
+    global $db;
+    $sql = "SELECT * FROM attendance WHERE attendance_date=?";
+    $req = $db->prepare($sql);
+    $req->execute([$attendance_data]);
+
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
 /**
  * @return list of all students
  */
@@ -19,6 +29,19 @@ function list_students()
     global $db;
     $sql = "SELECT * FROM student ORDER BY name";
     return $db->query($sql)->fetchAll();
+}
+
+/**
+ * @return one student
+ */
+function get_student_by_id($id)
+{
+    global $db;
+    $sql = "SELECT first_name, name, last_name FROM student WHERE id=? ORDER BY name";
+
+    $req = $db->prepare($sql);
+    $req->execute([$id]);
+    return $req->fetch();
 }
 
 /**
