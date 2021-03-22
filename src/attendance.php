@@ -2,7 +2,7 @@
  <p><a href="/">Accueil</a></p>
 
  <?php
-    require './model.php';
+    require './model/model.php';
     if (isset($_GET['submit'])) {
         $date = $_GET['date'];
         $date_format = new DateTime($date);
@@ -31,16 +31,20 @@
      </thead>
      <tbody>
          <?php
-                $absenceCount = 0;
+                $absence_count = 0;
+                $absence_female_count = 0;
                 foreach ($list as $student) {
-                    if ($student['status'] == 0) $absenceCount += 1;
-                    $status = ($student['status']) == 1 ? "+" : "-";
-                    $student = get_student_by_id($student['studentId']);
+                    $get_student = get_student_by_id($student['studentId']);
+                    if ($student['status'] == 0) {
+                        $absence_count += 1;
+                        if ($get_student['gender'] == "F") $absence_female_count += 1;
+                    }
 
+                    $status = ($student['status']) == 1 ? "+" : "-";
                 ?>
          <tr>
              <td>
-                 <?= $student['first_name'] . " " . $student['name'] . " " . $student['last_name'] ?>
+                 <?= $get_student['first_name'] . " " . $get_student['name'] . " " . $get_student['last_name'] ?>
              </td>
              <td>
                  <?= $status ?>
@@ -55,6 +59,7 @@
  </table>
 
  <p>Nombre d'absence:
-     <?= $absenceCount ?>
+     <?= $absence_count . " dont " . $absence_female_count . " femme(s)"; ?>
  </p>
- <?php } ?>
+ <?php echo $student['gender'];
+    }  ?>

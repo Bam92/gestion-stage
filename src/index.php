@@ -1,7 +1,7 @@
  <h1>Présence stagiaires</h1>
 
  <?php
-    require './model.php';
+    require './model/model.php';
 
     if (isset($_POST['submit'])) {
         if (!empty($_POST['studentId'])) {
@@ -23,6 +23,7 @@
  <p><a href="./new_student.php">Ajouter nouveau stagiaire</a></p>
  <form method="post">
      <div>
+         <label for="attendance_date">Date</label>
          <input type="date" name="attendance_date" required> (obligatoire)
      </div>
      <div>

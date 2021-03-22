@@ -2,7 +2,7 @@
  <p><a href="/">Accueil</a></p>
 
  <?php
-    require './model.php';
+    require './model/model.php';
     if (isset($_POST['submit'])) {
 
         $new_student = array(

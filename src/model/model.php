@@ -32,12 +32,12 @@ function list_students()
 }
 
 /**
- * @return one student
+ * @return one student by id
  */
 function get_student_by_id($id)
 {
     global $db;
-    $sql = "SELECT first_name, name, last_name FROM student WHERE id=? ORDER BY name";
+    $sql = "SELECT first_name, name, last_name, gender FROM student WHERE id=? ORDER BY name";
 
     $req = $db->prepare($sql);
     $req->execute([$id]);
