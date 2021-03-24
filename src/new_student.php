@@ -15,7 +15,7 @@
         );
 
         if (add_student($new_student)) {
-            echo "Student added successfully!";
+            echo "Quel succes! Vous avez ajouté un nouveau stagiaire";
         }
     }
 

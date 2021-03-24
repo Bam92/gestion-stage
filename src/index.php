@@ -16,7 +16,7 @@
 
                 add_attendancy($new_attendance);
             }
-            echo "Student added successfully!";
+            echo "Bravo! Votre liste a été créée avec succès";
         }
     }
     ?>

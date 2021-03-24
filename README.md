@@ -1,6 +1,6 @@
 # Lapel
 
-une application web pour gestion des stagiares dans une PME
+> une application web pour gestion des stagiares dans une PME
 
 ## Fonctionnalités
 
@@ -16,7 +16,7 @@ coming soon...
 
 ## License
 
-MIT
+**Lapel** is licensed under the MIT license
 
 ## Author
 

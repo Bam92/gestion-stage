@@ -5,10 +5,19 @@
  *
  */
 
-$host       = "mysql";
-$username   = "salimas";
-$password   = "salimas";
-$dbname     = "attendancy";
+require 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+
+if (file_exists(".env")) {
+    $dotenv->load();
+}
+
+// $DB_HOST =  $_ENV['TEST_ENV'];
+$host       = $_ENV['DB_HOST'];
+$username   = $_ENV['DB_USER'];
+$password   = $_ENV['DB_PASSWORD'];
+$dbname     = $_ENV['DB_NAME'];
 $dsn        = "mysql:host=$host;dbname=$dbname";
 $options    = array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION

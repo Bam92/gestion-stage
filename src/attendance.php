@@ -61,5 +61,8 @@
  <p>Nombre d'absence:
      <?= $absence_count . " dont " . $absence_female_count . " femme(s)"; ?>
  </p>
- <?php echo $student['gender'];
+ <?php //echo $student['gender'];
     }  ?>
+
+ <!-- To do  -->
+ <!-- Add "Encadreur" -->
