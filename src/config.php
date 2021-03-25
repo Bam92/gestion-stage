@@ -13,7 +13,6 @@ if (file_exists(".env")) {
     $dotenv->load();
 }
 
-// $DB_HOST =  $_ENV['TEST_ENV'];
 $host       = $_ENV['DB_HOST'];
 $username   = $_ENV['DB_USER'];
 $password   = $_ENV['DB_PASSWORD'];

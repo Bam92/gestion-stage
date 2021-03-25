@@ -15,13 +15,6 @@ services:
       - ./src:/var/www/html
     networks:
       - lapel
-    links:
-      - mysql
-    environment:
-      DB_HOST: mysql
-      DB_DATABASE: attendancy
-      DB_USERNAME: salimas
-      DB_PASSWORD: salimas
   mysql:
     build:
       context: ./.docker/database
@@ -30,10 +23,12 @@ services:
     networks:
       - lapel
     environment:
-      MYSQL_DATABASE: attendancy
-      MYSQL_USER: salimas
-      MYSQL_PASSWORD: salimas
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
+    volumes:
+      - ./.docker/database/sql-scripts:/docker-entrypoint-initdb.d
 
 networks:
   lapel:
