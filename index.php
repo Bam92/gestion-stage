@@ -1,7 +1,8 @@
  <h1>Présence stagiaires</h1>
 
  <?php
-    require './model/model.php';
+
+    include(dirname(__FILE__) . "/src/model/model.php");
 
     if (isset($_POST['submit'])) {
         if (!empty($_POST['studentId'])) {
@@ -20,7 +21,9 @@
         }
     }
     ?>
- <p><a href="./new_student.php">Ajouter nouveau stagiaire</a></p>
+
+ <p><a href="./src/new_student.php">Ajouter nouveau stagiaire</a></p>
+
  <form method="post">
      <div>
          <label for="attendance_date">Date</label>
@@ -61,3 +64,9 @@
          <input type="submit" name="submit" value="Enregistrer">
      </div>
  </form>
+
+ <!-- Doc
+ - https://stackoverflow.com/questions/60918843/how-to-create-a-psr-4-autoloader-for-my-project
+ - https://getcomposer.org/doc/04-schema.md
+ - https://stackoverflow.com/questions/19699319/php-namespace-pdo-not-found
+  -->

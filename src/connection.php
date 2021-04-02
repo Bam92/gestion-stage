@@ -1,9 +1,10 @@
 <?php
+
 function db_connect()
 {
-    require "./config.php";
+    include(dirname(__FILE__) . "/config.php");
 
-     try {
+    try {
         $connection = new PDO($dsn, $username, $password, $options);
     } catch (PDOException $err) {
         echo "Database connection error. <br>" . $err->getMessage();

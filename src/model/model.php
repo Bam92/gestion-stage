@@ -1,5 +1,8 @@
 <?php
-require './connection.php';
+
+include(dirname(__FILE__) . "/../connection.php");
+
+
 $db = db_connect();
 
 function add_attendancy(array $data)
@@ -62,4 +65,32 @@ function add_student(array $data)
     $req->execute($data);
 
     return true;
+}
+
+/**
+ * Insert a new group
+ * @return bool true
+ */
+function add_group($data)
+{
+    global $db;
+    $sql = "INSERT INTO groupe (name) VALUES (?)";
+
+    try {
+        $req = db_connect()->prepare($sql);
+        $req->execute(array($data));
+        return true;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
+/**
+ * @return list of all group
+ */
+function list_groups()
+{
+    global $db;
+    $sql = "SELECT id, name FROM groupe ORDER BY name";
+    return $db->query($sql)->fetchAll();
 }

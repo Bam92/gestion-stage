@@ -1,7 +1,13 @@
+CREATE TABLE IF NOT EXISTS groupe (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(25)
+);
+
 CREATE TABLE IF NOT EXISTS attendance (
-studentId INT,
-attendance_date  date,
-status INT(5)
+    studentId INT,
+    attendance_date  date,
+    status INT(5),
+    coach VARCHAR(25)
 );
 
 CREATE TABLE IF NOT EXISTS student (
@@ -11,8 +17,7 @@ CREATE TABLE IF NOT EXISTS student (
     last_name VARCHAR(25),
     gender VARCHAR(10),
     institution VARCHAR(30),
-    class VARCHAR(25) -- students are divided into classes   
-     
+    class INT -- students are divided into classes   
 );
 
 

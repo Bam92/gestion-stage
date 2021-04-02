@@ -2,7 +2,8 @@
  <p><a href="/">Accueil</a></p>
 
  <?php
-    require './model/model.php';
+    include(dirname(__FILE__) . "/model/model.php");
+
     if (isset($_POST['submit'])) {
 
         $new_student = array(
@@ -11,7 +12,7 @@
             "last_name" => $_POST['lName'],
             "institution" => $_POST['institution'],
             "gender" => $_POST['gender'],
-            "class" => $_POST['gender']
+            "class" => $_POST['class']
         );
 
         if (add_student($new_student)) {
@@ -50,8 +51,23 @@
 
      <div>
          <label for="class">Groupe</label>
-         <input type="text" placeholder="Groupe" name="class" id="class">
+         <select name="class" id="class">
+
+             <?php
+                /**
+                 * Get list of available groups if any
+                 */
+                $list = list_groups();
+                foreach ($list as $group) {
+                ?>
+             <option value="<?= $group['id'] ?>">
+                 <?= $group['name'] ?>
+             </option>
+             <?php } ?>
+
+         </select>
      </div>
+
      <div>
          <input type="submit" name="submit" value="Enregistrer">
      </div>

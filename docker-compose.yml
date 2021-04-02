@@ -12,7 +12,16 @@ services:
       - 7075:80
     working_dir: /var/www/html
     volumes:
-      - ./src:/var/www/html
+      - .:/var/www/html
+    links:
+      - mysql
+    env_file:
+      - ./src/.env
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: ${DB_NAME}
+      DB_USERNAME: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
     networks:
       - lapel
   mysql:
@@ -22,13 +31,15 @@ services:
       - 13306:3306
     networks:
       - lapel
+    env_file:
+      - ./src/.env
     environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
-    volumes:
-      - ./.docker/database/sql-scripts:/docker-entrypoint-initdb.d
+    # volumes:
+      # - ./.docker/database/sql-scripts:/docker-entrypoint-initdb.d
 
 networks:
   lapel:
