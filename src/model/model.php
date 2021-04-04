@@ -30,8 +30,12 @@ function get_attendancy_by_date($attendance_data)
 function list_students()
 {
     global $db;
+    $students = array();
     $sql = "SELECT * FROM student ORDER BY name";
-    return $db->query($sql)->fetchAll();
+    foreach ($db->query($sql) as $row) {
+        $students[] = $row;
+    }
+    return $students;
 }
 
 /**

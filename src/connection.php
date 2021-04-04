@@ -6,9 +6,12 @@ function db_connect()
 
     try {
         $connection = new PDO($dsn, $username, $password, $options);
-    } catch (PDOException $err) {
-        echo "Database connection error. <br>" . $err->getMessage();
-        exit;
+    } catch (PDOException $e) {
+        printf(
+            "Echec de connexion : %s\n",
+            $e->getMessage()
+        );
+        exit();
     }
     return $connection;
 }
