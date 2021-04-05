@@ -22,7 +22,12 @@ switch ($request) {
     case '/students/add':  
         students_add_action();
         break;       
-        
+    case '/attendance/list':  
+        attendance_list_action();
+        break; 
+    case '/attendance/add':  
+        attendance_add_action();
+        break;    
     default:
         http_response_code(404);
         echo '<html><body><h1>Page not found</h1></body></html>';

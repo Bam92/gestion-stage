@@ -1,0 +1,18 @@
+.landing_buttons {
+  display: flex;
+  align-content: space-between;
+}
+
+.landing_buttons a {
+  border: 1.5px solid grey;
+  border-radius: 3px;
+  padding: 0.5em;
+}
+
+#first {
+  border: 1.5px solid blue;
+  border-radius: 3px;
+  padding: 0.5em;
+  color: white;
+  background-color: blue;
+}

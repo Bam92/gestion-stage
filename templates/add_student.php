@@ -5,7 +5,6 @@ ob_start();
 ?>
 
 <h1><?= $title; ?></h1>
-<p><a href="/">Accueil</a></p>
 
 <?php
 

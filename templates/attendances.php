@@ -2,7 +2,6 @@
  <p><a href="/">Accueil</a></p>
 
  <?php
-    require './model/model.php';
     if (isset($_GET['submit'])) {
         $date = $_GET['date'];
         $date_format = new DateTime($date);

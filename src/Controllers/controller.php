@@ -44,3 +44,17 @@ function students_add_action() {
     }
     require 'templates/add_student.php';
 }
+
+function attendance_list_action() {
+    if (isset($_GET['submit'])) {
+        $date = $_GET['date'];
+        $date_format = new DateTime($date);
+        $list = get_attendancy_by_date($date);
+    }
+
+    require 'templates/attendances.php';
+}
+
+function attendance_add_action() {
+    require 'templates/add_attendance.php';
+}
