@@ -7,10 +7,8 @@ ob_start();
 <h1>
     <?= $title; ?>
 </h1>
-<?php
 
-if(isset($message)) echo $message;
-?>
+<?php if(isset($message)) echo $message; ?>
 
 <form method="post">
     <div>

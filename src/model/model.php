@@ -95,6 +95,14 @@ function add_group($data)
 function list_groups()
 {
     global $db;
-    $sql = "SELECT id, name FROM groupe ORDER BY name";
-    return $db->query($sql)->fetchAll();
+    $groups = array();
+    $sql = "SELECT id, name 
+            FROM groupe 
+            ORDER BY name";
+
+    foreach ($db->query($sql) as $row) {
+        $groups[] = $row;
+    }
+    
+    return $groups;
 }

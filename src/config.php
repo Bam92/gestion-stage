@@ -5,13 +5,13 @@
  *
  */
 
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 
-if (file_exists(".env")) {
-    $dotenv->load();
-}
+// if (file_exists("../.env")) {
+//     $dotenv->load();
+// }
 
 $host       = $_ENV['DB_HOST'];
 $username   = $_ENV['DB_USER'];

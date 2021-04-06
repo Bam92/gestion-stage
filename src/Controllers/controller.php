@@ -45,11 +45,14 @@ function students_add_action() {
     require 'templates/add_student.php';
 }
 
+// all about attendance
 function attendance_list_action() {
     if (isset($_GET['submit'])) {
         $date = $_GET['date'];
         $date_format = new DateTime($date);
         $list = get_attendancy_by_date($date);
+
+        if (sizeof($list) == 0) $message = 'Désolé, aucune présence pour cette date';
     }
 
     require 'templates/attendances.php';
@@ -57,4 +60,21 @@ function attendance_list_action() {
 
 function attendance_add_action() {
     require 'templates/add_attendance.php';
+}
+
+// all about group or class
+function group_list_action() {
+    $groups = list_groups();
+
+    require 'templates/groups.php';
+}
+
+function group_add_action() {
+    if (isset($_POST['submit'])) {
+        if (add_group($_POST['name'])) {
+            $message = "Nouveau groupe enregistré avec succès!";
+        }
+    }
+    
+    require 'templates/add_group.php';
 }

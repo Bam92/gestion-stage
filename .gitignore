@@ -1,3 +1,2 @@
-src/vendor
-src/.env
+vendor/
 .env
