@@ -16,7 +16,7 @@ services:
     links:
       - mysql
     env_file:
-      - ./src/.env
+      - .env
     environment:
       DB_HOST: mysql
       DB_DATABASE: ${DB_NAME}
@@ -32,14 +32,14 @@ services:
     networks:
       - lapel
     env_file:
-      - ./src/.env
+      - .env
     environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
     # volumes:
-      # - ./.docker/database/sql-scripts:/docker-entrypoint-initdb.d
+    # - ./.docker/database/sql-scripts:/docker-entrypoint-initdb.d
 
 networks:
   lapel:

@@ -12,6 +12,8 @@ function add_attendancy(array $data)
     $req = $db->prepare($sql);
 
     $req->execute($data);
+
+    return true;
 }
 
 function get_attendancy_by_date($attendance_data)

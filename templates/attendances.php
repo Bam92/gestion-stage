@@ -1,13 +1,13 @@
 <?php
 // templates/home.php
-$title = 'Voir liste de présence du <br><small>(choisir date)</small>';
+$title = 'Voir liste de présence';
 ob_start();
 ?>
 
 <h1>
     <?= $title; ?>
 </h1>
-
+<small>(choisir date)</small>
 <form method="get">
     <label for="date">Date</label>
     <input type="date" placeholder="dd/mm/yyyy" name="date" id="date">
@@ -27,6 +27,7 @@ else {?>
 <table cellpadding="10" cellspacing="1">
     <thead>
         <tr>
+            <th>#</th>
             <th>Étudiant</th>
             <th>Présence</th>
         </tr>
@@ -35,7 +36,10 @@ else {?>
         <?php
                 $absence_count = 0;
                 $absence_female_count = 0;
+                $count = 0;
+                
                 foreach ($list as $student) {
+                    $count++;
                     $get_student = get_student_by_id($student['studentId']);
                     if ($student['status'] == 0) {
                         $absence_count += 1;
@@ -45,6 +49,7 @@ else {?>
                     $status = ($student['status']) == 1 ? "+" : "-";
                 ?>
         <tr>
+            <td><?= $count; ?></td>
             <td>
                 <?= $get_student['first_name'] . " " . $get_student['name'] . " " . $get_student['last_name'] ?>
             </td>

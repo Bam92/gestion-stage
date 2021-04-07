@@ -59,6 +59,28 @@ function attendance_list_action() {
 }
 
 function attendance_add_action() {
+    if (isset($_POST['submit'])) {
+        $status = ($_POST['status'] == "present") ? 1 : 0;
+        
+        $ids  =  $_POST['studentId'];
+
+        if (!empty($ids)) {
+            foreach ($ids as $student) {
+                $status = ($_POST['status-' . $student] == "present") ? 1 : 0;
+
+                $new_attendance = array(
+                    "studentId" => $student,
+                    "date" => $_POST['attendance_date'],
+                    "status" => $status
+                );
+
+                if (add_attendancy($new_attendance)) {
+                    $message = "Félicitation! Votre liste de présence a été enregistrée avec succès! ";
+                }
+        }
+
+    }}
+    
     require 'templates/add_attendance.php';
 }
 

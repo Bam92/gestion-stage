@@ -5,8 +5,8 @@
  * 
  * Load models and controllers
  */
-require_once './src/model/model.php';
-require_once './src/Controllers/controller.php';
+require_once './src/Model/models.php';
+require_once './src/Controllers/controllers.php';
 
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 

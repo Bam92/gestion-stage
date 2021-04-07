@@ -1,5 +1,5 @@
 <?php
-// templates/home.php
+// templates/add_attendance.php
 $title = 'Présence stagiaires';
 ob_start();
 ?>
@@ -26,6 +26,7 @@ ob_start();
                 </tr>
             </thead>
             <tbody>
+
                 <?php
                 $list = list_students();
                 $count = 0;
@@ -33,6 +34,7 @@ ob_start();
                 foreach ($list as $student) {
                     $count++;
                 ?>
+
                 <tr>
                     <td><?= $count; ?></td>
                     <td>
@@ -46,7 +48,9 @@ ob_start();
                         <input type="radio" id="absent" name="status-<?= $student['id']; ?>" value="absent">
                     </td>
                 </tr>
+
                 <?php } ?>
+
             </tbody>
         </table>
     </div>
