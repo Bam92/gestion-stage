@@ -27,6 +27,25 @@ function get_attendancy_by_date($attendance_data)
 }
 
 /**
+ * @return list of all attendancies by group
+ */
+function get_attendancy($date, $class)
+{
+    global $db;
+    $sql = "SELECT first_name, name, last_name, gender, institution 
+            FROM student s
+            JOIN attendance a
+            ON s.id = a.studentId
+            WHERE a.attendance_date=? AND s.class=?";
+    $req = $db->prepare($sql);
+    $req->bindParam(1, $date);
+    $req->bindParam(2, $class);
+    $req->execute();
+
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
  * @return list of all students
  */
 function list_students()
@@ -50,7 +69,20 @@ function get_student_by_id($id)
 
     $req = $db->prepare($sql);
     $req->execute([$id]);
+
     return $req->fetch();
+}
+
+/**
+ * @return get students by group
+ */
+function get_student_by_group(int $id)
+{
+    global $db;
+    $sql = "SELECT id, first_name, name, last_name, gender FROM student WHERE class=? ORDER BY name";
+    $req = $db->prepare($sql);
+    $req->execute([$id]);
+    return $req->fetchAll();
 }
 
 /**
@@ -105,6 +137,6 @@ function list_groups()
     foreach ($db->query($sql) as $row) {
         $groups[] = $row;
     }
-    
+
     return $groups;
 }

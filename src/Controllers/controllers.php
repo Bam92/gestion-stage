@@ -1,17 +1,19 @@
 <?php
+// include(dirname(__FILE__) . "/../Model/models.php");
 
-function home_action() {
+function home_action()
+{
     if (isset($_POST['submit'])) {
         if (!empty($_POST['studentId'])) {
             foreach ($_POST['studentId'] as $student_one) {
                 $status = ($_POST['status-' . $student_one] == "present") ? 1 : 0;
-    
+
                 $new_attendance = array(
                     "studentId" => $student_one,
                     "date" => $_POST['attendance_date'],
                     "status" => $status
                 );
-    
+
                 add_attendancy($new_attendance);
             }
             $message = "Bravo! Votre liste a été créée avec succès";
@@ -20,13 +22,15 @@ function home_action() {
     require 'templates/home.php';
 }
 
-function students_list_action() {
+function students_list_action()
+{
     $students = list_students();
 
     require 'templates/students.php';
 }
 
-function students_add_action() {
+function students_add_action()
+{
     if (isset($_POST['submit'])) {
 
         $new_student = array(
@@ -46,11 +50,13 @@ function students_add_action() {
 }
 
 // all about attendance
-function attendance_list_action() {
+function attendance_list_action()
+{
     if (isset($_GET['submit'])) {
         $date = $_GET['date'];
-        $date_format = new DateTime($date);
-        $list = get_attendancy_by_date($date);
+        $class = $_GET['class'];
+
+        $list = get_attendancy($date, $class);
 
         if (sizeof($list) == 0) $message = 'Désolé, aucune présence pour cette date';
     }
@@ -58,10 +64,14 @@ function attendance_list_action() {
     require 'templates/attendances.php';
 }
 
-function attendance_add_action() {
+function attendance_add_action()
+{
+    if (isset($_GET['submit']) && $_GET['class'] != "") {
+        $list = get_student_by_group($_GET['class']);
+    }
+
     if (isset($_POST['submit'])) {
-        $status = ($_POST['status'] == "present") ? 1 : 0;
-        
+
         $ids  =  $_POST['studentId'];
 
         if (!empty($ids)) {
@@ -77,26 +87,28 @@ function attendance_add_action() {
                 if (add_attendancy($new_attendance)) {
                     $message = "Félicitation! Votre liste de présence a été enregistrée avec succès! ";
                 }
+            }
         }
+    }
 
-    }}
-    
     require 'templates/add_attendance.php';
 }
 
 // all about group or class
-function group_list_action() {
+function group_list_action()
+{
     $groups = list_groups();
 
     require 'templates/groups.php';
 }
 
-function group_add_action() {
+function group_add_action()
+{
     if (isset($_POST['submit'])) {
         if (add_group($_POST['name'])) {
             $message = "Nouveau groupe enregistré avec succès!";
         }
     }
-    
+
     require 'templates/add_group.php';
 }

@@ -50,7 +50,7 @@ ob_start();
                 $list = list_groups();
                 foreach ($list as $group) {
                 ?>
-            <option value="<?= $group['id'] ?>">
+            <option value="<?= $group['id']; ?>">
                 <?= $group['name'] ?>
             </option>
             <?php } ?>

@@ -7,22 +7,42 @@ ob_start();
 <h1>
     <?= $title; ?>
 </h1>
-<small>(choisir date)</small>
+
+<small>(choisir le groupe )</small>
 <form method="get">
+    <label for="class">Groupe / classe</label>
+    <select name="class" id="class">
+        <option value="">selctionner</option>
+        <?php
+        $groups = list_groups();
+        foreach ($groups as $group) {
+        ?>
+
+        <option value="<?= $group['id']; ?>">
+            <?= $group['name']; ?>
+        </option>
+        <?php } ?>
+    </select>
+
     <label for="date">Date</label>
     <input type="date" placeholder="dd/mm/yyyy" name="date" id="date">
 
-    <input type="submit" name="submit" value="Afficher">
+    <input type="submit" name="submit" value="Afficher les étudiants">
 </form>
-<?php if ($date) { ?>
-
-<h2>
-    <?= $date_format->format('d/m/Y'); ?>
-</h2>
 
 <?php
-if(isset($message)) echo $message;
-else {?>
+if ($date) {
+    if ($message) echo $message;
+    else {
+
+        $date_format = new DateTime($date);
+
+?>
+
+<h2>
+    Groupe: <?= $class; ?>,
+    Date : <?= $date_format->format('d/m/Y'); ?>
+</h2>
 
 <table cellpadding="10" cellspacing="1">
     <thead>
@@ -33,17 +53,17 @@ else {?>
         </tr>
     </thead>
     <tbody>
+
         <?php
                 $absence_count = 0;
                 $absence_female_count = 0;
                 $count = 0;
-                
+
                 foreach ($list as $student) {
                     $count++;
-                    $get_student = get_student_by_id($student['studentId']);
                     if ($student['status'] == 0) {
                         $absence_count += 1;
-                        if ($get_student['gender'] == "F") $absence_female_count += 1;
+                        if ($student['gender'] == "F") $absence_female_count += 1;
                     }
 
                     $status = ($student['status']) == 1 ? "+" : "-";
@@ -51,14 +71,15 @@ else {?>
         <tr>
             <td><?= $count; ?></td>
             <td>
-                <?= $get_student['first_name'] . " " . $get_student['name'] . " " . $get_student['last_name'] ?>
+                <?= $student['first_name'] . " " . $student['name'] . " " . $student['last_name'] ?>
             </td>
             <td>
                 <?= $status ?>
             </td>
-
         </tr>
+
         <?php } ?>
+
     </tbody>
 </table>
 
@@ -67,11 +88,13 @@ else {?>
     <?= $absence_count . " dont " . $absence_female_count . " femme(s)"; ?>
 </p>
 
-<?php 
-} }
+<?php
+    }
+}
 
 $content = ob_get_clean();
 include 'layout.php';
+
 ?>
 <!-- To do  -->
 <!-- Add "Encadreur" -->
