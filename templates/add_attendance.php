@@ -28,9 +28,14 @@ ob_start();
 
     <input type="submit" name="submit" value="Afficher les étudiants">
 </form>
+
 <?php
+
 if (!$list) echo "Veillez choisir un groupe";
-else { ?>
+else {
+
+?>
+
 <form method="post">
     <div>
         <label for="attendance_date">Date</label>
@@ -52,7 +57,7 @@ else { ?>
                     $count = 0;
                     foreach ($list as $student) {
                         $count++;
-                    ?>
+                ?>
 
                 <tr>
                     <td><?= $count; ?></td>

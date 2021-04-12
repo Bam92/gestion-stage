@@ -12,8 +12,8 @@ ob_start();
 
 <form method="post">
     <div>
-        <label for="groupe">Nom</label>
-        <input type="text" placeholder="Nom du groupe" name="name" id="name">
+        <!-- <label for="groupe">Nom</label> -->
+        <input type="text" placeholder="Nom du groupe ici" name="name" id="name">
     </div>
     <div>
         <input type="submit" name="submit" value="Enregistrer">

@@ -36,7 +36,6 @@ if ($date) {
     else {
 
         $date_format = new DateTime($date);
-
 ?>
 
 <h2>

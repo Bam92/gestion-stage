@@ -1,24 +1,93 @@
+html,
+body {
+  height: 100%;
+}
+
+/* activate flex supperpowers */
+body {
+  display: flex;
+  background-color: rgba(224, 213, 213, 0.808);
+  margin: 0;
+  font-family: Lato, sans-serif;
+  color: #222;
+  font-size: 0.9em;
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+/* ===== Navigation ===== */
+
+.navigation_area {
+  flex: 0 0 100px;
+  display: flex;
+  flex-direction: column;
+  background-color: #14142f;
+  color: #fff;
+}
+
+.navigation_top {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navigation_bottom {
+  display: flex;
+  flex: 0 0 90px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav a {
+  color: #fff;
+}
+
 .landing_buttons {
   display: flex;
-  align-content: space-between;
+  justify-content: space-around;
+  width: 40%;
 }
 
 .landing_buttons a {
   border: 1.5px solid grey;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 0.5em;
-  text-decoration: none;
 }
 
 #first {
   border: 1.5px solid blue;
-  border-radius: 3px;
+  /* border-radius: 3px; */
   padding: 0.5em;
   color: white;
   background-color: blue;
 }
 
-body {
-  margin-left: auto;
-  margin-right: auto;
+form {
+  width: 25em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+form input[type="text"],
+form input[type="submit"],
+form select {
+  width: 20em;
+  padding: 8px;
+}
+
+form input[type="submit"] {
+  cursor: pointer;
 }

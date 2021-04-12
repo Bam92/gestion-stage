@@ -13,7 +13,9 @@
     <?php
     require 'navigation.php';
     ?>
-    <?= $content ?>
-</body>
+
+    <main>
+        <?= $content ?>
+    </main>
 
 </html>
