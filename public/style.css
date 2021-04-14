@@ -36,14 +36,20 @@ main {
   flex: 1 0 auto;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
 }
 
 .navigation_bottom {
   display: flex;
-  flex: 0 0 90px;
+  flex: 0 0 20em;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  border-top: 1.5px solid grey;
+}
+
+.addToggle {
+  display: none;
 }
 
 a {

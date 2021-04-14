@@ -1,33 +1,28 @@
 <!-- // templates/navigation.php -->
 <div class="navigation_area">
     <nav class="navigation_top">
-        <a href="/" title="Home">Lapel</a>
-        <a href="/students/list" title="Voir la liste des étudiants">Etudiants</a>
-        <a href="/groups/list" title="Voir tous les groupes">Groupes</a>
-        <!-- <ul>
-        <li><a href=" /" title="Home">Lapel</a></li>
-        <li>Ajouter</li>
-        <ul>
-            <li><a href="/students/add">Etudiant</a> </li>
-            <li><a href="/groups/add">Groupe</a></li>
-            <li><a href="/session/add">Sesion</a></li>
-        </ul>
-        <li>Gérer</li>
-        <ul>
-            <li><a href="/students/list" title="Voir list des étudiants">Etudiants</a> </li>
-            <li><a href="/groups/list">Groupe</a></li>
-            <li><a href="/sessions/list">Sesion</a></li>
-            <li><a href="/">Présence</a></li>
-        </ul>
-        </ul> -->
+
+        <a href="/" title="Home">
+            <i class="fas fa-home"></i><br><br>
+            Lapel
+        </a>
+        <a href="/students/list" title="Voir la liste des étudiants">
+            <i class="fas fa-users"></i><br><br>
+            Etudiants
+        </a>
+        <a href="/groups/list" title="Voir tous les groupes">
+            <i class="fas fa-users"></i><br><br>
+            Groupes</a>
     </nav>
 
+    <!-- Botom navigation items  -->
     <nav class="navigation_bottom">
-        <p>Ajouter</p>
-
-        <div class="add_links">
-            <a href="/students/add">Etudiant</a>
-            <a href="/groups/add">Groupe</a>
-        </div>
+        <a href="/students/add" class="addToggle">
+            <i class="fas fa-user-graduate"></i><br><br>
+            Etudiant</a>
+        <a href="/groups/add" class="addToggle">
+            <i class="fas fa-users"></i><br><br>
+            Groupe</a>
+        <a href="#" id="add">Ajouter</a>
     </nav>
 </div>
