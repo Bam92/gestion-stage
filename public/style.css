@@ -52,6 +52,10 @@ main {
   display: none;
 }
 
+/* .toggleVisible {
+  display: none;
+} */
+
 a {
   text-decoration: none;
 }

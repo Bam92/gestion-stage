@@ -19,11 +19,28 @@ function add_attendancy(array $data)
 function get_attendancy_by_date($attendance_data)
 {
     global $db;
-    $sql = "SELECT * FROM attendance WHERE attendance_date=?";
-    $req = $db->prepare($sql);
-    $req->execute([$attendance_data]);
+    $sql = "SELECT studentId, attendance_date, status, coach
+            FROM attendance 
+            WHERE attendance_date=?";
+    
+    try {
+        $req = $db->prepare($sql);
 
-    return $req->fetchAll(PDO::FETCH_ASSOC);
+        // We should execute only if $req is true
+        if ($req) {
+            // perform querry
+            $result = $req->execute([$attendance_data]);
+
+            if ($result) {
+                return $req->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $error = $req->errorInfo();
+                echo 'La requette a échoué avec le message: ' . $error[2];
+            }
+        }
+    } catch (PDOException $e) {
+        echo "Un problème avec la base de données a été rencontré"  . $e->getMessage();
+    }
 }
 
 /**
@@ -139,4 +156,20 @@ function list_groups()
     }
 
     return $groups;
+}
+
+/**
+ * Delete record
+ *
+ * @param string $table: the name of the table
+ * @param string $value: the row to delete
+ * @return int nb record deleted
+ */
+function del_row($table, $value)
+{
+    global $db;
+    $stmt = $db->prepare('DELETE FROM ' . $table . ' WHERE id= :id');
+    $stmt->execute(array(':id' => $value));
+
+    return $stmt->rowCount();
 }

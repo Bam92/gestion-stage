@@ -24,6 +24,12 @@ function home_action()
 
 function students_list_action()
 {
+    if (isset($_GET['del'])) {
+        if (del_row('student', $_GET['id']) > 0) {
+            $message = "L'etudiant a ete supprime de la bd avec succes! ";
+        }
+    }
+    
     $students = list_students();
 
     require 'templates/students.php';
@@ -32,7 +38,6 @@ function students_list_action()
 function students_add_action()
 {
     if (isset($_POST['submit'])) {
-
         $new_student = array(
             "first_name" => $_POST['fName'],
             "name" => $_POST['name'],
@@ -58,7 +63,9 @@ function attendance_list_action()
 
         $list = get_attendancy($date, $class);
 
-        if (sizeof($list) == 0) $message = 'Désolé, aucune présence pour cette date';
+        if (sizeof($list) == 0) {
+            $message = 'Désolé, aucune présence pour cette date';
+        }
     }
 
     require 'templates/attendances.php';
@@ -71,7 +78,6 @@ function attendance_add_action()
     }
 
     if (isset($_POST['submit'])) {
-
         $ids  =  $_POST['studentId'];
 
         if (!empty($ids)) {
@@ -97,6 +103,12 @@ function attendance_add_action()
 // all about group or class
 function group_list_action()
 {
+    if (isset($_GET['del'])) {
+        if (del_row('groupe', $_GET['id']) > 0) {
+            $message = "Le group a ete supprime de la bd avec succes! ";
+        }
+    }
+    
     $groups = list_groups();
 
     require 'templates/groups.php';
