@@ -49,7 +49,7 @@ function get_attendancy_by_date($attendance_data)
 function get_attendancy($date, $class)
 {
     global $db;
-    $sql = "SELECT first_name, name, last_name, gender, institution 
+    $sql = "SELECT first_name, name, last_name, gender, institution, status 
             FROM student s
             JOIN attendance a
             ON s.id = a.studentId

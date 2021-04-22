@@ -16,12 +16,13 @@ ob_start();
         <?php
         $groups = list_groups();
         foreach ($groups as $group) {
-        ?>
+            ?>
 
         <option value="<?= $group['id']; ?>">
             <?= $group['name']; ?>
         </option>
-        <?php } ?>
+        <?php
+        } ?>
     </select>
 
     <label for="date">Date</label>
@@ -32,11 +33,10 @@ ob_start();
 
 <?php
 if ($date) {
-    if ($message) echo $message;
-    else {
-
-        $date_format = new DateTime($date);
-?>
+            if ($message) {
+                echo $message;
+            } else {
+                $date_format = new DateTime($date); ?>
 
 <h2>
     Groupe: <?= $class; ?>,
@@ -62,11 +62,12 @@ if ($date) {
                     $count++;
                     if ($student['status'] == 0) {
                         $absence_count += 1;
-                        if ($student['gender'] == "F") $absence_female_count += 1;
+                        if ($student['gender'] == "F") {
+                            $absence_female_count += 1;
+                        }
                     }
 
-                    $status = ($student['status']) == 1 ? "+" : "-";
-                ?>
+                    $status = ($student['status']) == 1 ? "+" : "-"; ?>
         <tr>
             <td><?= $count; ?></td>
             <td>
@@ -77,19 +78,26 @@ if ($date) {
             </td>
         </tr>
 
-        <?php } ?>
+        <?php
+                } ?>
 
     </tbody>
 </table>
 
 <p>
     Nombre d'absence:
-    <?= $absence_count . " dont " . $absence_female_count . " femme(s)"; ?>
+    <?php
+    // Print stat for absence.
+    if ($absence_count == 0) {
+        echo "aucune";
+    } else {
+        echo $absence_count . " dont " . $absence_female_count . " femme(s)";
+    } ?>
 </p>
 
 <?php
-    }
-}
+            }
+        }
 
 $content = ob_get_clean();
 include 'layout.php';
