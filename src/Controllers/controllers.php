@@ -1,5 +1,5 @@
 <?php
-// include(dirname(__FILE__) . "/../Model/models.php");
+include(dirname(__FILE__) . "/../Model/models.php");
 
 function home_action()
 {
@@ -26,7 +26,7 @@ function students_list_action()
 {
     if (isset($_GET['del'])) {
         if (del_row('student', $_GET['id']) > 0) {
-            $message = "L'etudiant a ete supprime de la bd avec succes! ";
+            $message = "L'etudiant a été supprimé de la base de données avec succès! ";
         }
     }
     
@@ -105,7 +105,7 @@ function group_list_action()
 {
     if (isset($_GET['del'])) {
         if (del_row('groupe', $_GET['id']) > 0) {
-            $message = "Le group a ete supprime de la bd avec succes! ";
+            $message = "Le group a été supprimé de la base de données avec succès! ";
         }
     }
     

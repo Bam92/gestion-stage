@@ -87,12 +87,12 @@ if ($date) {
 <p>
     Nombre d'absence:
     <?php
-    // Print stat for absence.
-    if ($absence_count == 0) {
-        echo "aucune";
-    } else {
-        echo $absence_count . " dont " . $absence_female_count . " femme(s)";
-    } ?>
+            // Print stat for absence.
+            if ($absence_count == 0) {
+                echo "aucune";
+            } else {
+                echo $absence_count . " dont " . $absence_female_count . " femme(s)";
+            } ?>
 </p>
 
 <?php

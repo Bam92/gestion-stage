@@ -3,10 +3,9 @@
 /**
  * @author Abel L Mbula
  * Front controller
- * 
- * Load models and controllers
+ *
+ * Load controllers
  */
-require_once './src/Model/models.php';
 require_once './src/Controllers/controllers.php';
 
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
