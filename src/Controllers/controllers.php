@@ -26,11 +26,11 @@ function students_list_action()
 {
     if (isset($_GET['del'])) {
         if (del_row('student', $_GET['id']) > 0) {
-            $message = "L'etudiant a été supprimé de la base de données avec succès! ";
+            $message = "L'étudiant a été supprimé de la base de données avec succès! ";
         }
     }
     
-    $students = list_students();
+    list_students();
 
     require 'templates/students.php';
 }

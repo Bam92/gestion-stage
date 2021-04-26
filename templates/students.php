@@ -9,6 +9,9 @@ ob_start();
 </h1>
 
 <?php
+
+$students = list_students();
+
 if (isset($message)) {
     echo '<p>' . $message . '</p>';
 }

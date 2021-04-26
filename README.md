@@ -1,4 +1,6 @@
-# Lapel
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+# Lapel 
 
 > une application web pour gestion des stagiares dans une PME
 
@@ -12,7 +14,7 @@
 
 ## Installation
 
-coming soon...
+Coming soon...
 
 ## License
 
