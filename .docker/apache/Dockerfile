@@ -1,11 +1,17 @@
 FROM php:7.4.15-apache
 
+RUN sed -ri -e 's/var\/www\/html/var\/www\/html\/public/g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's/var\/www\/html/var\/www\/html\/public/g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
 # Arguments defined in docker-compose.yml
 ARG user
 ARG uid
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y\
+    p7zip\
+    p7zip-full \
+    unace \
     git\
     zip\
     unzip
@@ -24,7 +30,7 @@ RUN docker-php-ext-install pdo pdo_mysql && \
     chown -R www-data:www-data /var/www/html && a2enmod rewrite 
 
 # Set working directory
-WORKDIR /var/www/html
+# WORKDIR /var/www/html
 
 
 USER $user

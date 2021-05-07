@@ -19,7 +19,7 @@ function home_action()
             $message = "Bravo! Votre liste a été créée avec succès";
         }
     }
-    require 'templates/home.php';
+    require '../templates/home.php';
 }
 
 function students_list_action()
