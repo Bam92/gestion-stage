@@ -3,7 +3,7 @@ include(dirname(__FILE__) . "/../Model/models.php");
 
 function home_action()
 {
-    if (isset($_POST['submit'])) {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (!empty($_POST['studentId'])) {
             foreach ($_POST['studentId'] as $student_one) {
                 $status = ($_POST['status-' . $student_one] == "present") ? 1 : 0;
@@ -24,8 +24,9 @@ function home_action()
 
 function students_list_action()
 {
-    if (isset($_GET['del'])) {
-        if (del_row('student', $_GET['id']) > 0) {
+    if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
+        $id = $_GET['id'];
+        if (del_row('student', $id) > 0) {
             $message = "L'étudiant a été supprimé de la base de données avec succès! ";
         }
     }
@@ -37,7 +38,7 @@ function students_list_action()
 
 function students_add_action()
 {
-    if (isset($_POST['submit'])) {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $new_student = array(
             "first_name" => $_POST['fName'],
             "name" => $_POST['name'],
@@ -77,7 +78,7 @@ function attendance_add_action()
         $list = get_student_by_group($_GET['class']);
     }
 
-    if (isset($_POST['submit'])) {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $ids  =  $_POST['studentId'];
 
         if (!empty($ids)) {
@@ -105,7 +106,7 @@ function group_list_action()
 {
     if (isset($_GET['del'])) {
         if (del_row('groupe', $_GET['id']) > 0) {
-            $message = "Le group a été supprimé de la base de données avec succès! ";
+            $message = "Le groupe a été supprimé de la base de données avec succès! ";
         }
     }
     
@@ -116,7 +117,7 @@ function group_list_action()
 
 function group_add_action()
 {
-    if (isset($_POST['submit'])) {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (add_group($_POST['name'])) {
             $message = "Nouveau groupe enregistré avec succès!";
         }

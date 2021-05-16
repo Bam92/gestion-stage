@@ -28,39 +28,41 @@ if (isset($message)) {
             <th>Action</th>
         </tr>
     </thead>
-    <tbody>
 
-        <?php
-        $count = 0;
-        foreach ($students as $student) {
-            $count++; ?>
-        <tr>
-            <td><?= $count; ?></td>
-            <td>
-                <?= $student['first_name'] . " " . $student['name'] . " " . $student['last_name'] ?>
-            </td>
-            <td>
-                <?= $student['gender'] ?>
-            </td>
-            <td>
-                <?= $student['institution'] ?>
-            </td>
-            <td>
-                <?= $student['class'] ?>
-            </td>
-            <td>
-                <form method="get">
-                    <input type="hidden" name="id" value="<?= $student['id'] ?>">
-                    <input type="submit" name="del" value="Suppr">
-                </form>
-            </td>
-        </tr>
-
-        <?php
-        } ?>
-
-    </tbody>
+    <?php
+    $count = 0;
+    foreach ($students as $student) {
+        $count++;
+        printf(
+            "<tbody>
+            <tr>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>
+                    <button>
+                        <!-- Todo
+                        Add an alert before user delete
+                        -->
+                        <i class='far fa-trash-alt'></i>
+                        <a href='/students/list?id=%s'>Supprimer</a>
+                    </button>
+                </td>
+            </tr>
+            </tbody>",
+            $count,
+            htmlspecialchars($student['first_name'] . " " . $student['name'] . " " . $student['last_name'], ENT_QUOTES),
+            htmlspecialchars($student['gender'], ENT_QUOTES),
+            htmlspecialchars($student['institution'], ENT_QUOTES),
+            htmlspecialchars($student['class'], ENT_QUOTES),
+            htmlspecialchars($student['id'], ENT_QUOTES)
+        );
+    }
+    ?>
 </table>
+
 <?php
 $content = ob_get_clean();
 include 'layout.php';
