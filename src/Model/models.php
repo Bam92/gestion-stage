@@ -1,6 +1,6 @@
 <?php
 
-include(dirname(__FILE__) . "/../connection.php");
+include(__DIR__ . "/../../config/connection.php");
 
 
 $db = db_connect();

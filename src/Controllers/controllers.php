@@ -1,11 +1,12 @@
 <?php
-include(dirname(__FILE__) . "/../Model/models.php");
+include(__DIR__ . "/../Model/models.php");
 
 function home_action()
 {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (!empty($_POST['studentId'])) {
             foreach ($_POST['studentId'] as $student_one) {
+                // student attendance status: 1 => present, 0 => absent
                 $status = ($_POST['status-' . $student_one] == "present") ? 1 : 0;
 
                 $new_attendance = array(
