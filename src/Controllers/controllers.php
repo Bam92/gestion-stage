@@ -40,7 +40,10 @@ function students_list_action()
 function students_add_action()
 {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $new_student = array(
+        if (empty($_POST['class'])) {
+            $message = 'Veuillez choisir un groupe';
+        } else {
+            $new_student = array(
             "first_name" => $_POST['fName'],
             "name" => $_POST['name'],
             "last_name" => $_POST['lName'],
@@ -48,9 +51,11 @@ function students_add_action()
             "gender" => $_POST['gender'],
             "class" => $_POST['class']
         );
-
-        if (add_student($new_student)) {
-            $message = "Quel succes! Vous avez ajouté un nouveau stagiaire";
+        
+        
+            if (add_student($new_student)) {
+                $message = "Quel succes! Vous avez ajouté un nouveau stagiaire";
+            }
         }
     }
     require 'templates/add_student.php';
