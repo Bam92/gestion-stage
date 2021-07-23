@@ -1,4 +1,7 @@
 <?php
+
+use Attendancy\Model\Student;
+
 include(__DIR__ . "/../Model/models.php");
 
 function home_action()
@@ -23,19 +26,7 @@ function home_action()
     require 'templates/home.php';
 }
 
-function students_list_action()
-{
-    if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
-        $id = $_GET['id'];
-        if (del_row('student', $id) > 0) {
-            $message = "L'étudiant a été supprimé de la base de données avec succès! ";
-        }
-    }
-    
-    list_students();
 
-    require 'templates/students.php';
-}
 
 function students_add_action()
 {

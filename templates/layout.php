@@ -18,5 +18,6 @@
     <main>
         <?= $content ?>
     </main>
+    <script src="../public/script.js"></script>
 
 </html>

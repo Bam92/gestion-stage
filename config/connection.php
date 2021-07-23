@@ -2,7 +2,7 @@
 
 function db_connect()
 {
-    include(dirname(__FILE__) . "/config.php");
+    include(__DIR__ . "/config.php");
 
     try {
         $connection = new PDO($dsn, $username, $password, $options);
@@ -13,5 +13,6 @@ function db_connect()
         );
         exit();
     }
+    
     return $connection;
 }

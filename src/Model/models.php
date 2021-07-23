@@ -2,7 +2,6 @@
 
 include(__DIR__ . "/../../config/connection.php");
 
-
 $db = db_connect();
 
 function add_attendancy(array $data)
@@ -22,7 +21,7 @@ function get_attendancy_by_date($attendance_data)
     $sql = "SELECT studentId, attendance_date, status, coach
             FROM attendance 
             WHERE attendance_date=?";
-    
+
     try {
         $req = $db->prepare($sql);
 

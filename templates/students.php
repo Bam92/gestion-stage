@@ -10,7 +10,6 @@ ob_start();
 
 <?php
 
-$students = list_students();
 
 if (isset($message)) {
     echo '<p>' . $message . '</p>';
@@ -31,7 +30,7 @@ if (isset($message)) {
 
     <?php
     $count = 0;
-    foreach ($students as $student) {
+    foreach ($studentList as $student) {
         $count++;
         printf(
             "<tbody>

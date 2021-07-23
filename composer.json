@@ -2,15 +2,18 @@
     "name": "lapel/lapel",
     "description": "A free, open-source web app to manage trainees or interns in your small enterprise.",
     "type": "project",
-    "require": {
-        "components/font-awesome": "^5.15", 
-        "vlucas/phpdotenv": "^5.3"
-    },
     "license": "MIT",
     "authors": [
         {
             "name": "Abel L. Mbula",
             "email": "news.abel@protonmail.com"
         }
-    ]
+    ],
+    "require": {
+        "components/font-awesome": "^5.15", 
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {"Attendancy\\": "src"}
+    }    
 }

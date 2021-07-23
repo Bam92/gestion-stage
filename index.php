@@ -6,7 +6,12 @@
  *
  * Load controllers
  */
+require __DIR__ . '/vendor/autoload.php';
+
 require_once './src/Controllers/controllers.php';
+require_once './src/Controllers/Student.php';
+
+// use Attendancy\Controller\StudentController as StudentCtl;
 
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -39,6 +44,10 @@ switch ($request) {
 
     case '/groups/add':
         group_add_action();
+        break;
+
+    case '/oop':
+        return (new \Attendancy\Controller\StudentController())->sayHello();
         break;
 
     default:

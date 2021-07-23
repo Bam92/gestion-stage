@@ -1,6 +1,6 @@
 <?php
 // templates/students.php
-$title = 'Nouveau stagiaire';
+$title = 'Ajouter nouveau stagiaire';
 ob_start();
 ?>
 
@@ -37,7 +37,7 @@ ob_start();
     </div>
 
     <div>
-        <select name="class" id="class">
+        <select name="class" id="class" required>
             <option value="">--Selectionnez un groupe--</option>
 
             <?php
