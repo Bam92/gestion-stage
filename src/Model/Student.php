@@ -14,7 +14,7 @@ class Student
     }
 
     /**
-    * @return list of all students
+    * @return a list of all students
     */
     public function getAllStudents()
     {
@@ -22,12 +22,34 @@ class Student
     }
 
     /**
- * Delete record
- *
- * @param string $table: the name of the table
- * @param string $value: the row to delete
- * @return int nb record deleted
- */
+     * Insert a new student
+     * @param array
+     * @return bool
+     */
+    public function addStudent(array $data)
+    {
+        $sql = sprintf(
+            "INSERT INTO %s (%s) VALUES (%s)",
+            "student",
+            implode(", ", array_keys($data)),
+            ":" . implode(", :", array_keys($data))
+        );
+
+        $req = $this->db->prepare($sql);
+
+        $req->execute($data);
+
+        return true;
+    }
+
+
+    /**
+     * Delete record
+     *
+     * @param string $table: the name of the table
+     * @param string $value: the row to delete
+     * @return int nb record deleted
+     */
     public function deleteStudent(int $id)
     {
         $stmt = $this->db->prepare('DELETE FROM student WHERE id= :id');

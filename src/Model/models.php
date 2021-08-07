@@ -101,25 +101,6 @@ function get_student_by_group(int $id)
     return $req->fetchAll();
 }
 
-/**
- * Insert a new student
- */
-function add_student(array $data)
-{
-    global $db;
-    $sql = sprintf(
-        "INSERT INTO %s (%s) VALUES (%s)",
-        "student",
-        implode(", ", array_keys($data)),
-        ":" . implode(", :", array_keys($data))
-    );
-
-    $req = db_connect()->prepare($sql);
-
-    $req->execute($data);
-
-    return true;
-}
 
 /**
  * Insert a new group

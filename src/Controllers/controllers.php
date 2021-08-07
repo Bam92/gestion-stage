@@ -1,6 +1,4 @@
-<?php
-
-use Attendancy\Model\Student;
+<?php use Attendancy\Model\Student;
 
 include(__DIR__ . "/../Model/models.php");
 
@@ -24,32 +22,6 @@ function home_action()
         }
     }
     require 'templates/home.php';
-}
-
-
-
-function students_add_action()
-{
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        if (empty($_POST['class'])) {
-            $message = 'Veuillez choisir un groupe';
-        } else {
-            $new_student = array(
-            "first_name" => $_POST['fName'],
-            "name" => $_POST['name'],
-            "last_name" => $_POST['lName'],
-            "institution" => $_POST['institution'],
-            "gender" => $_POST['gender'],
-            "class" => $_POST['class']
-        );
-        
-        
-            if (add_student($new_student)) {
-                $message = "Quel succes! Vous avez ajouté un nouveau stagiaire";
-            }
-        }
-    }
-    require 'templates/add_student.php';
 }
 
 // all about attendance
