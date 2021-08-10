@@ -1,5 +1,5 @@
 <?php
-// templates/home.php
+// templates/attendances.php
 $title = 'Voir liste de présence';
 ob_start();
 ?>
@@ -14,7 +14,7 @@ ob_start();
     <select name="class" id="class">
         <option value="">selctionner</option>
         <?php
-        $groups = list_groups();
+        // $groups = list_groups();
         foreach ($groups as $group) {
             ?>
 

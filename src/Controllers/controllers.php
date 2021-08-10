@@ -1,9 +1,16 @@
-<?php use Attendancy\Model\Student;
+<?php
 
-include(__DIR__ . "/../Model/models.php");
+use Attendancy\Model\Attendancy;
+
+include __DIR__ . "/../../config/connection.php";
+
+$db = db_connect();
 
 function home_action()
 {
+    global $db;
+    $model = new Attendancy($db);
+    
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (!empty($_POST['studentId'])) {
             foreach ($_POST['studentId'] as $student_one) {
@@ -15,8 +22,8 @@ function home_action()
                     "date" => $_POST['attendance_date'],
                     "status" => $status
                 );
-
-                add_attendancy($new_attendance);
+                // https://www.php.net/manual/fr/functions.anonymous.php
+                $model->add_attendancy($new_attendance);
             }
             $message = "Bravo! Votre liste a été créée avec succès";
         }
@@ -27,11 +34,14 @@ function home_action()
 // all about attendance
 function attendance_list_action()
 {
+    global $db;
+    $model = new Attendancy($db);
+    
     if (isset($_GET['submit'])) {
         $date = $_GET['date'];
         $class = $_GET['class'];
 
-        $list = get_attendancy($date, $class);
+        $list = $model -> get_attendancy($date, $class);
 
         if (sizeof($list) == 0) {
             $message = 'Désolé, aucune présence pour cette date';
@@ -43,8 +53,13 @@ function attendance_list_action()
 
 function attendance_add_action()
 {
+    global $db;
+    $model = new Attendancy($db);
+
+    $groups = $model->list_groups();
+    
     if (isset($_GET['submit']) && $_GET['class'] != "") {
-        $list = get_student_by_group($_GET['class']);
+        $list = $model -> get_student_by_group($_GET['class']);
     }
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -59,8 +74,8 @@ function attendance_add_action()
                     "date" => $_POST['attendance_date'],
                     "status" => $status
                 );
-
-                if (add_attendancy($new_attendance)) {
+                
+                if ($model -> add_attendancy($new_attendance)) {
                     $message = "Félicitation! Votre liste de présence a été enregistrée avec succès! ";
                 }
             }
@@ -73,21 +88,27 @@ function attendance_add_action()
 // all about group or class
 function group_list_action()
 {
+    global $db;
+    $model = new Attendancy($db);
+    
     if (isset($_GET['del'])) {
-        if (del_row('groupe', $_GET['id']) > 0) {
+        if ($model -> del_row('groupe', $_GET['id']) > 0) {
             $message = "Le groupe a été supprimé de la base de données avec succès! ";
         }
     }
     
-    $groups = list_groups();
+    $groups = $model -> list_groups();
 
     require 'templates/groups.php';
 }
 
 function group_add_action()
 {
+    global $db;
+    $model = new Attendancy($db);
+    
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        if (add_group($_POST['name'])) {
+        if ($model -> add_group($_POST['name'])) {
             $message = "Nouveau groupe enregistré avec succès!";
         }
     }

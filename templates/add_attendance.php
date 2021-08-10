@@ -8,21 +8,22 @@ ob_start();
     <?= $title; ?>
 </h1>
 
-<?php if (isset($message)) echo $message; ?>
+<?php if (isset($message)) {
+    echo $message;
+} ?>
 
 <small>(choisir le groupe )</small>
 <form method="get">
     <label for="class">Groupe / classe</label>
     <select name="class" id="class">
         <option value="">selctionner</option>
-        <?php
-        $groups = list_groups();
-        foreach ($groups as $group) {
-        ?>
+
+        <?php foreach ($groups as $group) { ?>
 
         <option value="<?= $group['id']; ?>">
             <?= $group['name']; ?>
         </option>
+
         <?php } ?>
     </select>
 
@@ -31,10 +32,9 @@ ob_start();
 
 <?php
 
-if (!$list) echo "Veillez choisir un groupe";
-else {
-
-?>
+if (!$list) {
+    echo "Veillez choisir un groupe";
+} else { ?>
 
 <form method="post">
     <div>
@@ -55,9 +55,8 @@ else {
 
                 <?php
                     $count = 0;
-                    foreach ($list as $student) {
-                        $count++;
-                ?>
+    foreach ($list as $student) {
+        $count++; ?>
 
                 <tr>
                     <td><?= $count; ?></td>
@@ -73,7 +72,8 @@ else {
                     </td>
                 </tr>
 
-                <?php } ?>
+                <?php
+    } ?>
 
             </tbody>
         </table>
